@@ -3,4 +3,4 @@ from django.views import View
 
 class ProfileView(View):
   def get(self, request, *args, **kwargs):
-    return render(request, 'profile.html')
+    return render(request, 'accounts/profile.html')
