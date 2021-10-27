@@ -1,15 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from accounts.models import CustomUser
-from accounts.forms import ProfileForm
-class ProfileView(View):
+from accounts.forms import ProfileForm, SignupUserForm
+from allauth.account import views
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class ProfileView(LoginRequiredMixin, View):
   def get(self, request, *args, **kwargs):
     user_data = CustomUser.objects.get(id=request.user.id)
     return render(request, 'accounts/profile.html', {
       'user_data': user_data,
     })
 
-class ProfileEditView(View):
+class ProfileEditView(LoginRequiredMixin, View):
   def get(self, request, *args, **kwargs):
     user_data = CustomUser.objects.get(id=request.user.id)
     form = ProfileForm(
@@ -38,3 +41,18 @@ class ProfileEditView(View):
     return render(request, 'account/profile.html', {
       'form': form
     })
+
+class LoginView(views.LoginView):
+  template_name = 'accounts/login.html'
+
+class LogoutView(views.LogoutView):
+  template_name = 'accounts/logout.html'
+
+  def post(self, *args, **kwargs):
+    if self.request.user.is_authenticated:
+      self.logout()
+    return redirect('/')
+
+class SignupView(views.SignupView):
+  template_name = 'accounts/signup.html'
+  form_class = SignupUserForm
