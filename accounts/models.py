@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.utils import timezone
+
 class UserManager(UserManager):
     def _create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
@@ -10,7 +11,7 @@ class UserManager(UserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email=None, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, password, **extra_fields)
@@ -28,8 +29,8 @@ class UserManager(UserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('メールアドレス', unique=True)
-    first_name = models.CharField('姓', max_length=30)
-    last_name = models.CharField('名', max_length=30)
+    first_name = models.CharField('姓', max_length=30, blank=True)
+    last_name = models.CharField('名', max_length=30, blank=True)
     department = models.CharField('所属', max_length=30, blank=True)
     created = models.DateField('入会日', default=timezone.now)
 

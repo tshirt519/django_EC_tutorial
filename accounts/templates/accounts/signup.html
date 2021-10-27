@@ -8,10 +8,10 @@
     <h5 class="card-title text-center">サインアップ</h5>
     <form method="post" class="form-auth">
       {% csrf_token %}
-      <div class="form-label-group form-wrap form-wrap-2">
+      <!-- <div class="form-label-group form-wrap form-wrap-2">
         {% render_field form.first_name class='form-control' placeholder='姓' %}
         {% render_field form.last_name class='form-control' placeholder='名' %}
-      </div>
+      </div> -->
       <div class="form-label-group">
         {% render_field form.email class='form-control' placeholder='メールアドレス' %}
       </div>
