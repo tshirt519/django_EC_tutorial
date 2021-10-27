@@ -50,3 +50,16 @@ main {
 .profile_table .data {
   padding: 16px 24px;
 }
+
+.form-wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.form-wrap-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
