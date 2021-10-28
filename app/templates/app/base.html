@@ -1,55 +1,57 @@
 {% load static %}
 
- <!DOCTYPE html>
- <html lang="ja">
- <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   <title>EC Application Tutorial</title>
- </head>
- <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/">ECサイト</a>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a href="/" class="nav-link">ホーム</a>
-        </li> 
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>EC Application Tutorial</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">EC App</a>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">ホーム</a>
+          </li>
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a href="{% url 'profile' %}" class="nav-link">プロフィール</a>
-          </li> 
+            <a class="nav-link" href="{% url 'profile' %}">プロフィール</a>
+          </li>
           <li class="nav-item">
-            <a href="{% url 'account_logout' %}" class="nav-link">ログアウト</a>
-          </li> 
+            <a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a>
+          </li>
         {% else %}
           <li class="nav-item">
-            <a href="{% url 'account_login' %}" class="nav-link">ログイン</a>
-          </li> 
+            <a class="nav-link" href="{% url 'account_signup' %}"
+              >サインアップ</a
+            >
+          </li>
           <li class="nav-item">
-            <a href="{% url 'account_signup' %}" class="nav-link">サインアップ</a>
-          </li> 
+            <a class="nav-link" href="{% url 'account_login' %}">ログイン</a>
+          </li>
         {% endif %}
-      </ul>
-    </div>
-  </nav>
+        </ul>
+      </div>
+    </nav>
 
-  <main>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-  </main>
+    <main>
+      <div class="container">{% block content %} {% endblock %}</div>
+    </main>
 
-  <footer class="py-2 bg-dark">
-    <p class="m-0 text-center text-white">Copyright &copy; ampan</p>
-  </footer>
+    <footer class="py-2 bg-dark">
+      <p class="m-0 text-center text-white">
+        Copyright &copy; Django Startup 2020
+      </p>
+    </footer>
 
-  {% block extra_js %}
-  {% endblock %}
-
- </body>
- </html>
+    {% block extra_js %} {% endblock %}
+  </body>
+</html>

@@ -11,9 +11,9 @@
             <div class="card-body text-center px-2 py-3">
               <p class="mb-0 text-secondary">{{ item.category }}</p>
               <h5 class="font-weight-bold">{{ item.title }}</h5>
-              <h4 class="font-weight-bold">{{ item.price }}</h4>
+              <h4 class="font-weight-bold">{{ item.price }} 円</h4>
             </div>
-            <a href="/" class="stretched-link"></a>
+            <a href="{% url 'product' item.slug %}" class="stretched-link"></a>
           </div>
         </div>
       {% endfor %}

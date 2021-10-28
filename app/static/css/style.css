@@ -94,3 +94,8 @@ main {
   height: 150px;
   object-fit: contain;
 }
+
+.product img {
+  height: 350px;
+  object-fit: contain;
+}
