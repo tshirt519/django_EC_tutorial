@@ -87,3 +87,10 @@ main {
 .form-label-group input {
   border-radius: 2rem;
 }
+
+/* index */
+
+.itemlist img {
+  height: 150px;
+  object-fit: contain;
+}
