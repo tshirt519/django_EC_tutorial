@@ -1,1 +1,1 @@
-# django_custom_auth
+# django_EC_tutorial
