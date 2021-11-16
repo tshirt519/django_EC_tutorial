@@ -31,7 +31,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('メールアドレス', unique=True)
     first_name = models.CharField('姓', max_length=30, blank=True)
     last_name = models.CharField('名', max_length=30, blank=True)
-    department = models.CharField('所属', max_length=30, blank=True)
     address = models.CharField('住所', max_length=30, blank=True)
     tel = models.CharField('電話番号', max_length=30, blank=True)
     created = models.DateField('入会日', default=timezone.now)

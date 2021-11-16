@@ -1,9 +1,10 @@
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import View
 from .models import Item, OrderItem, Order
 from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class IndexView(View):
   def get(self, request, *args, **kwargs):
@@ -42,3 +43,13 @@ def addItem(request, slug):
 
   return redirect('order')
   
+class OrderView(LoginRequiredMixin, View):
+  def get(self, request, *args, **kwargs):
+    try:
+      order = Order.objects.get(user=request.user, ordered=False)
+      context = {
+        'order': order
+      }
+      return render(request, 'app/order.html', context)
+    except ObjectDoesNotExist:
+      return render(request, 'app/order.html')

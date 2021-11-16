@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing :border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -34,7 +34,7 @@ main {
 
 .profile_table {
   width: 100%;
-  border: 1px solid #D1DBEB;  
+  border: 1px solid #d1dbeb;
   border-radius: 8px;
   border-collapse: separate;
   overflow: hidden;
@@ -97,5 +97,10 @@ main {
 
 .product img {
   height: 350px;
+  object-fit: contain;
+}
+
+.order img {
+  height: 100px;
   object-fit: contain;
 }

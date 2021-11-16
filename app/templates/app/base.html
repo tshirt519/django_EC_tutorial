@@ -1,3 +1,4 @@
+{% load cart_tags %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -24,6 +25,14 @@
         {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">プロフィール</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'order' %}" class="nav-link">
+              カート
+              <span class="badge badge-pill badge-warning">
+                {{ request.user|itemCount }}
+              </span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a>
