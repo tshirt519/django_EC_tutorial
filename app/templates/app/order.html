@@ -23,10 +23,10 @@
             <h5>{{ order_item.item.title }}</h5>
             <p class="mb-1">
               数量:
-              <a href=""><span class="badge badge-warning">-</span></a>
+              <a href="{% url 'removesingleitem' order_item.item.slug %}"><span class="badge badge-warning">-</span></a>
               {{ order_item.quantity }}
               <a href="{% url 'additem' order_item.item.slug %}"
-                ><span class="badge badge-warning"></span
+                ><span class="badge badge-warning">+</span
               ></a>
             </p>
             <a href="{% url 'removeitem' order_item.item.slug %}"><span class="badge badge-danger">削除</span></a>
@@ -35,7 +35,7 @@
             <p>
               価格:
               <span class="text-danger font-weight-bold">
-                {{ order_item.get_total_price }} 円
+                {{ order_item.item.price }} 円
               </span>
             </p>
           </div>
