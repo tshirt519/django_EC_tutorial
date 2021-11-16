@@ -53,3 +53,23 @@ class OrderView(LoginRequiredMixin, View):
       return render(request, 'app/order.html', context)
     except ObjectDoesNotExist:
       return render(request, 'app/order.html')
+    
+@login_required
+def removeItem(request, slug):
+  item = get_object_or_404(Item, slug=slug)
+  order = Order.objects.filter(
+    user=request.user,
+    ordered=False,
+  )
+  if order.exists():
+    order = order[0]
+    if order.items.filter(item__slug=item.slug).exists():
+      order_item = OrderItem.objects.filter(
+        item=item,
+        user=request.user,
+        ordered=False,
+      )[0]
+      order.items.remove(order_item)
+      order_item.delete()
+      return redirect('order')
+  return redirect('product', slug=slug)
