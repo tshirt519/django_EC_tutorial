@@ -58,7 +58,7 @@
           小計: <span class="font-weight-bold">{{ order.get_total }}</span>円
         </p>
         <div class="mb-3">
-          <a href="" class="btn btn-warning">レジに進む</a>
+          <a href="{% url 'payment' %}" class="btn btn-warning">レジに進む</a>
         </div>
         {% endif%}
         <a href="" class="btn btn-primary">買い物を続ける</a>
