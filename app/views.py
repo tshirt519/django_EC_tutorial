@@ -126,3 +126,7 @@ class PaymentView(LoginRequiredMixin, View):
     order.payment = payment
     order.save()
     return redirect('thanks')
+
+class ThanksView(LoginRequiredMixin, View):
+  def get(self, request, *args, **kwargs):
+    return render(request, 'app/thanks.html')
