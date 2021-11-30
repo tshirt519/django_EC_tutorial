@@ -114,7 +114,7 @@ class PaymentView(LoginRequiredMixin, View):
   def post(self, request, *args, **kwargs):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     order = Order.objects.get(user=request.user, ordered=False)
-    
+    # token = request.POST.get('stripeToken')
     token = stripe.Token.create(
       card={
         "number": "4242424242424242",
